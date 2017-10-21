@@ -14,9 +14,9 @@
 			<label>Ваш мастер</label>
 			<select name="mastername" class="form-control" >
 			  <option>-</option>
-			  <option>Рафик</option>
-			  <option>Ашот</option>
-			  <option>Дильшот</option>
+			  <option <%= @mastername == 'Рафик'? 'selected':''%> >Рафик</option>
+			  <option <%= @mastername == 'Ашот'? 'selected':''%> >Ашот</option>
+			  <option <%= @mastername == 'Дильшот'? 'selected':''%> >Дильшот</option>
 			</select>
 		</div>
 	  
