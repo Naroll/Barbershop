@@ -35,7 +35,7 @@ get '/visit' do
 end
 
 post '/visit' do
-  @mastername = params[:mastername]
+  @barber = params[:barber]
   @username = params[:username]
   @phone = params[:phone]
   @datetime = params[:datetime]
@@ -52,7 +52,7 @@ post '/visit' do
 
   f = File.open './public/users.txt', 'a'
   #chmod 666 users.txt
-  f.write "User: #{@username}, phone: #{@phone}, date and time #{@datetime}, master #{@mastername}\n"
+  f.write "User: #{@username}, phone: #{@phone}, date and time #{@datetime}, master #{@barber}\n"
   f.close
   redirect '/visit'
 end
