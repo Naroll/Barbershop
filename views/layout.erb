@@ -40,30 +40,15 @@
 			      <li><a href="/visit">Записаться</a></li>
 			      <li><a href="/contacts">Контакты</a></li>
 			    </ul>
-			    <ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%> <b class="caret"></b></a>
-			        <ul class="dropdown-menu">
-			            <li><a href="/login/form">Login</a></li>
-			            <li class="divider"></li>
-			            <li><a href="/logout">Logout</a></li>
-			        </ul>
-			      </li>
-
-			    </ul>
 			  </div><!--/.nav-collapse -->
 			</nav>
 
 			<div>
-			      <%if @error then %>
-			          <div class="alert alert-danger"><%=@error%></div>
-			      <% end %>
-			      <%= yield %>
+				<%if @error then %>
+			    <div class="alert alert-danger"><%=@error%></div>
+			  <% end %>
+			  <%= yield %>
 			</div>
-
-	</div>
-
-
-    
-  </body>
+		</div>
+	</body>
 </html>
