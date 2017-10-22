@@ -6,8 +6,8 @@ require 'sqlite3'
 
 
 configure do
-  @db = SQLite3::Database.new 'barbershop.db'
-  @db.execute 'CREATE TABLE IF NOT EXISTS
+  db = get_db
+  db.execute 'CREATE TABLE IF NOT EXISTS
   Users
   (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,6 +37,7 @@ post '/visit' do
   @username = params[:username]
   @phone = params[:phone]
   @datetime = params[:datetime]
+  @color = params[:color]
 
   #Добавляем хэш с сообщениями об ошибках
   hh = { :username => 'Введите имя', :phone => 'Введите телефон', :datetime => 'Введите дату'}
@@ -53,6 +54,10 @@ post '/visit' do
   #chmod 666 users.txt
   #f.write "User: #{@username}, phone: #{@phone}, date and time #{@datetime}, master #{@barber}\n"
   #f.close
+
+  db = get_db
+  db.execute 'insert into Users (username, phone, datestamp, barber, color) values ( ?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barber, @color]
+
   redirect '/visit'
 end
 
@@ -97,4 +102,8 @@ post '/contacts' do
 })
 
   redirect '/contacts'
+end
+
+def get_db
+  return SQLite3::Database.new 'barbershop.db'
 end
