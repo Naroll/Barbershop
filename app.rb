@@ -6,7 +6,17 @@ require 'sqlite3'
 
 
 configure do
-  #enable :sessions
+  @db = SQLite3::Database.new 'barbershop.db'
+  @db.execute 'CREATE TABLE IF NOT EXISTS
+  Users
+  (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "username" TEXT,
+    "phone" TEXT,
+    "datestamp" TEXT,
+    "barber" TEXT,
+    "color" TEXT
+  )'
 end
 
 get '/' do
@@ -38,10 +48,11 @@ post '/visit' do
     return erb :visit 
   end
 
-  f = File.open './public/users.txt', 'a'
+  #Сохранение данных в файл
+  #f = File.open './public/users.txt', 'a'
   #chmod 666 users.txt
-  f.write "User: #{@username}, phone: #{@phone}, date and time #{@datetime}, master #{@barber}\n"
-  f.close
+  #f.write "User: #{@username}, phone: #{@phone}, date and time #{@datetime}, master #{@barber}\n"
+  #f.close
   redirect '/visit'
 end
 
